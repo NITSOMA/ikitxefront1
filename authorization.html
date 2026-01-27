@@ -1,0 +1,124 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="authorization.css">
+   
+</head>
+<body>
+    <div class="header-container"></div>
+    <div class="container">
+        <div class="titles">
+            <h2 class="auth">ავტორიზაცია</h2>
+            <h2 class="register">რეგისტრაცია</h2>
+        </div>
+        <p class="greeting"> 
+            აქ დარეგისტრირდი უნდა ჩავსვა ლინკში 
+            კეთილი იყოს თქვენი დაბრუნბეა. თუ ჯერ არ გაქვთ ანგარიში, <a class="greeting-a" href="">დარეგისტრირდით</a> 
+
+        </p>
+        <form method="POST" enctype="multipart/form-data">
+                <div class="authorization2 hidden">
+    <div class="input-group">
+        <input type="text" id="reg-username" placeholder="Username">
+        <input type="password" id="login-password" placeholder="Password">
+    </div>
+    <button type="button" id="btn-login-submit">შესვლა (Login)</button>
+</div>
+
+<div class="registration hidden">
+    <div class="input-group">
+        <input type="text" id="reg-username" placeholder="Username">
+        
+        <input type="email" id="reg-email" placeholder="Email">
+
+        <input type="number" id="reg-age" placeholder="Age">
+        
+        <input type="password" id="reg-password" placeholder="Password">
+        
+        <input type="file" id="profile_image">
+    </div>
+
+    <button type="button" id="btn-register-submit">რეგისტრაცია (Register)</button>
+</div>
+
+
+    
+
+            
+        </form>
+
+
+         
+
+
+    </div>
+    
+    <script src="header.js"></script>
+    <script src="authorization.js"></script>
+
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="authorization.css">
+   
+</head>
+<body>
+    <div class="header-container"></div>
+    <div class="container">
+        <div class="titles">
+            <h2 class="auth">ავტორიზაცია</h2>
+            <h2 class="register">რეგისტრაცია</h2>
+        </div>
+        <p class="greeting"> 
+            <!-- აქ დარეგისტრირდი უნდა ჩავსვა ლინკში -->
+            კეთილი იყოს თქვენი დაბრუნბეა. თუ ჯერ არ გაქვთ ანგარიში, <a class="greeting-a" href="">დარეგისტრირდით</a> 
+
+        </p>
+        <form  method="POST" enctype="multipart/form-data">
+
+            <div class="registration-hidden hidden">
+            
+                <label for="email">ელფოსტა <span>*</span></label>
+            <input type="email" id="email" >
+            
+            <label for="age">ასაკი <span>*</span></label>
+            <input type="number" id="age">
+            <label for="profile-image">პროფილის ფოტო <span>*</span></label>
+            <input type="file" id="profile_image" name="profile_image">
+             
+            </div>
+
+            <label for="username">სახელი <span>*</span></label>
+            <input type="text" id="username" required>
+            <label for="password">პაროლი <span>*</span></label>
+            <input type="password" name="password" id="password" required>
+           
+            <button type="submit" class="authorization2">ავტორიზაცია</button>
+            <button type="submit" class="registration hidden">რეგისტრაცია</button>
+            
+        </form>
+
+
+         
+
+
+    </div>
+    
+    <script src="header.js"></script>
+    <script src="authorization.js"></script>
+
+</body>
+</html>

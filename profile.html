@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="author.css"> -->
+   
+
+    <link rel="stylesheet" href="header.css">
+     <link rel="stylesheet" href="profile.css">
+     <!-- <link rel="stylesheet" href="authorization.css"> -->
+</head>
+<body>
+    <div class="header-container"></div>
+
+    <main>
+    <div class="personal-page">
+        <div class="personal-image">
+            <img class="camera-img" src="media/images/camera.png" alt="">
+            <input class="input-image" type="file" id="profile_image" name="profile_image">
+        </div>
+
+       <div class="name-email">
+        
+        <!-- From Uiverse.io by aaronross1 --> 
+
+
+
+            <p class="personal-name">
+                <button class="edit-button see-info-button">
+  <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                    <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                  </svg>
+</button>
+            </p>
+            <p class="personal-email"></p>
+
+        </div>
+
+        
+        <!-- <div class="see-info">
+            <div class="see-info-in">
+                <img src="media/images/edit.png" alt=""><button class="see-info-button">პროფილის რედაქტირება</button>
+            </div>
+        </div> -->
+
+        
+        
+
+    </div>
+    
+
+
+    <!-- shelff -->
+     <h2>ჩემი თარო</h2>
+     <div class="my-shelf"><p>წაკითხული წიგნები</p> <p>მინდა წავიკითხო</p></div>
+    <div class="profile-books">
+        <div class="books-read read"> </div>
+        <div class="books-to-read read"></div>
+    </div>
+
+
+    <div class="info-detailed hidden">
+        <div class="close-image"><img class="close-image-img" src="media/images/close-svgrepo-com.png" alt=""></div>
+        
+          <form>
+
+            
+                <label for="username">სახელი  <span class="username-span"></span></label>
+            <input class="hidden" type="text" id="username">
+            
+                <label for="email">ელფოსტა  <span class="email-span"></span> </label>
+               
+            <input class="hidden" type="email" id="email" >
+            
+            <label for="age">ასაკი <span class="age-span"></span> </label>
+            <input class="hidden" type="number" id="age" min="1" max="120" step="1">
+
+            
+            
+             
+       
+
+            
+            <!-- <label for="password">პაროლი </label>
+            <input type="password" name="password" id="password" required> -->
+           
+            <button  class="edit-info">დარედაქტირება</button>
+            <button  class="save-info hidden">შენახვა</button>
+            
+        </form>
+        
+
+        <!-- <button class="edit-personal-info"></button> -->
+
+
+    </div>
+    </main>
+    <script src="header.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+.card-image {
+    width: 120px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+
+.author-books {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    
+}
+
+.author-image img {
+    width: 300px;
+}
+
+
+.author-container {
+    display: flex;
+    max-width: 700px;
+    gap: 30px;
+    margin-bottom: 30px;
+}

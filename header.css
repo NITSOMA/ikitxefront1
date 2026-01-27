@@ -1,0 +1,195 @@
+/*  ზოგადი css */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family:  "Noto Serif Georgian", serif;
+}
+
+
+button, input, textarea {
+    all:  unset;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    
+}
+
+
+header {
+    
+    width: 100%;
+    display: flex;
+    position: fixed; 
+    top: 0;
+    z-index: 999999;
+    padding: 10px; 
+    align-items: center; 
+    background-color: rgb(39, 37, 37);
+
+
+    /* პადინგი იგივენაირად უნდა დამეატოს კონტეინერ */
+}
+nav a {
+    font-size: 1.2rem;
+    color: white;
+
+}
+
+.logo {
+    margin-right: 20px;
+}
+
+.imagelogo {
+    width: 50px;
+     
+}
+
+.nav1, .authorization {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.menu-icon-image {
+    width: 30px;
+}
+
+.profile-icon{
+    width: 30px;
+}
+
+.authorization {
+    background-color:  rgb(203, 88, 88);
+    padding: 10px;
+    border-radius: 9px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+   
+}
+
+
+.authorization a {
+    display: flex;
+    align-items: center;
+}
+
+
+.profile-container {
+    position: relative;
+
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 40px;
+
+}
+
+
+
+.profile {
+  background-color: rgb(125, 125, 181);
+  width: 70px;
+  height: 70px;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+    object-fit:cover;
+   object-position: top; 
+  
+}
+
+
+
+.profile-more {
+  width: 200px;
+  padding: 30px;
+  background-color: rgb(213, 131, 131);
+  position: absolute;
+  top: 0;
+  right: 73px;
+  z-index: 999;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  
+  
+  
+}
+
+
+
+
+.logout {
+  cursor: pointer;
+  
+}
+
+
+
+.nav2 {
+  
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background-color: rgb(161, 255, 255);
+  position: fixed;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 9999999;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  
+
+}
+
+.nav2 img  {
+  width: 20px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+
+
+
+main {
+    min-height: 100vh;
+    width: 100%;
+    margin-top: 66px;
+    padding: 30px;
+    background-color: rgb(182, 182, 192);
+}
+
+
+
+.profile-image-main {
+    width: 100%;
+  
+}

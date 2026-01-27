@@ -1,0 +1,276 @@
+.personal-page {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 10px solid red;
+    
+}
+
+main {
+    position: relative;
+}
+
+
+.personal-image  {
+    width: 200px;
+    position: relative;
+
+
+
+}
+
+.profile-image {
+   width: 100%;
+   height: 200px;
+   object-fit:cover;
+   object-position: top; 
+   border-radius: 50%;
+   border: 4px solid rgb(135, 134, 125);
+}
+
+.name-email {
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    
+    font-size: 1.8rem;
+    
+    
+}
+.personal-email {
+    font-size: 1.2rem;
+    color: rgb(98, 96, 96);
+}
+
+.personal-name {
+    color: #2f2e2e;
+    position: relative;
+    
+    
+}
+
+.camera-img {
+    position: absolute;
+    width: 40px;
+    border-radius: 50%;
+    z-index: 9999;
+    bottom: -2%;
+    right: 20%;
+    border: 1px solid black;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px black;
+   
+
+}
+
+.camera-img:hover {
+    width: 43px;
+    border: 2px solid red;
+}
+
+.camera-img:active {
+    width: 30px;
+    border: 2px solid red;
+}
+
+
+.input-image {
+    
+    display: none;
+
+    
+}
+
+.card-image {
+    width: 100px;
+}
+
+
+
+
+.read {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+   
+}
+
+.my-shelf, .profile-books {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+   
+    gap: 10px;
+   
+    
+  
+    
+
+
+}
+
+.my-shelf p {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 1.2rem;
+    width: 100%;
+    
+} 
+
+/* .see-info {
+ 
+
+ 
+ 
+
+background-color: aquamarine;
+ cursor: pointer;
+ display: flex;
+
+ align-items: center;
+ gap: 2px;
+ 
+ 
+
+   
+   
+}
+
+.see-info-in {
+    
+    background-color: rgb(219, 211, 211);
+    display: flex;
+    padding: 2px;
+    border-radius: 10px;
+} */
+
+/* .see-info img {
+    width: 30px;
+} */
+.change-info:active {
+     color: #666;
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+
+
+.info-detailed {
+    position: absolute;
+   background-color: rgba(52, 90, 128, 0.8);
+   border-radius: 20px;
+   color: white;
+   padding: 30px;
+    width: 50%;
+    z-index: 9999;
+    top: 20%;
+    left: 50%;
+    /* top: 50%; */
+    /* left: 50%; */
+    transform: translateX(-50%);
+    
+
+    
+
+}
+
+.close-image {
+    
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-image img {
+    width: 30px;
+    background-color: #2f2e2e;
+    cursor: pointer;
+   
+}
+.close-image img:hover {
+    padding: 3px;
+    border: 1px solid white;
+}
+.info-detailed input {
+ border: 2px solid white;
+ color: white;
+
+
+}
+
+.info-detailed button {
+    background-color: rgb(26, 26, 26);
+    width: 200px;
+    padding: 5px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid rgb(163, 158, 158);
+}
+
+.info-detailed input::placeholder {
+  color: white;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input {
+    border: 3px solid rgba(50, 94, 225, 0.359);
+    padding: 10px;
+    border-radius: 7px;
+    
+    
+
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+
+
+/* edit button */
+/* From Uiverse.io by aaronross1 */ 
+.edit-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  
+  text-decoration: none !important;
+  position: absolute;
+  left: 80%;
+  top: 7%;
+}
+
+ .edit-svgIcon {
+  width: 17px;
+  transition-duration: 0.3s;
+}
+
+
+
+.edit-svgIcon path {
+  fill: white;
+}
+
+
+
+

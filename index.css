@@ -1,0 +1,279 @@
+main {
+  background-color: pink;
+  
+}
+
+
+.book-of-day {
+  width: 100%;
+  height: 320px;
+  border: 20px double  rgba(39, 37, 37, 0.8);
+  border-radius: 10px;
+  background-color: rgb(236, 237, 237);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+
+.book-title *  {
+  margin: 20px;
+  
+}
+
+
+.book-wrapper {
+  /* background-color: blue; */
+ position: relative;
+  width: 230px;               /* change once, everything scales */
+  perspective: 1000px;
+
+  
+}
+
+.book-img {
+   width: 100%;
+  display: block;
+  pointer-events: none;
+  
+  
+
+}
+
+.book-cover {
+ position: absolute;
+
+  /* front-face placement */
+  top: 10%;
+  left: 10.5%;
+  width: 65%;
+  height: 85%;
+
+  /* cover image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* 3D alignment */
+  transform-origin: left center;
+  transform:
+    rotateY(-18deg)
+    skewY(-3deg)
+    scaleY(1.02);
+
+  /* realism */
+  border-radius: 3px;
+  border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow:
+    inset -12px 0 18px rgba(0,0,0,0.28),
+    0 2px 6px rgba(0,0,0,0.2);
+
+  pointer-events: none;
+}
+
+
+.bookwrapper::after {
+  content: "";
+  position: absolute;
+  top: 5%;
+  left: 78%;
+  width: 3%;
+  height: 90%;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0)
+  );
+  pointer-events: none;
+}
+
+
+
+
+
+/*  book container  */
+
+.book-container {
+  display: flex;
+}
+
+.filter {
+  width: 300px;
+  margin: 5px;
+ 
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px
+}
+
+.categories  {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgb(201, 154, 154);
+}
+
+
+
+
+/* 
+.filter-input {
+  border: 1px solid black;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+} */
+
+
+.filter-input:focus {
+  background-color: #e6c6c6;
+  
+}
+
+.booksall {
+  /* background-color: white; */
+  width: 100%;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.card {
+  width: 200px;
+  height: 290px;
+  background-color: blue;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  
+}
+
+.card-image {
+  width: 100%;
+}
+
+
+/* სექცია ორი საძებნი სივრცე */
+.search {
+  /* background-color: rgb(190, 190, 225); */
+  padding: 20px;
+  
+
+
+}
+
+.search-div  {
+  max-width: 500px;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0px 10px;
+  /* background-color: rgb(145, 169, 169); */
+  color: rgb(0, 0, 0);
+
+  
+
+}
+
+.search-div  input {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: unset;
+  /* border: 1px solid black; */
+  width: 100%;
+}
+
+.search-div img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.search-div:hover  {
+  border-color: rgb(160, 19, 19);
+  background-color: rgb(255, 255, 255);
+  
+}
+
+
+/* .card:hover {
+  width: 220px;
+} */
+
+
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox input {
+  display: none; /* hide native checkbox */
+}
+
+.checkbox-span {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #444;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox input:checked + .checkbox-span {
+  background: #444;
+  border-color: #444;
+}
+
+.checkbox input:checked + .checkbox-span::after {
+  content: '✓';
+  color: white;
+  font-size: 12px;
+}
+
+
+
+
+/* აქ მექნება როცა გვერს დავაპატარავებ რა მოუვა */
+@media (max-width: 768px) {
+ 
+  
+
+  .title,   .book-title h2 {
+    font-size: 1rem;
+  }
+
+  .book-title h1 {
+    font-size: 1.2rem
+  }
+/* 
+  .book-img {
+  width: 100%
+
+}
+
+.book-wrapper {
+  
+  width: 300px; */
+}
+
+
+ 
+
