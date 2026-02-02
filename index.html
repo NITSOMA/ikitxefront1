@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-		<link rel="stylesheet" href="index.css">
+		
 		<link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
 	<div class="header-container">
@@ -18,17 +19,14 @@
 
     
 
-      <!-- დღის წიგნის კონტეინერი რომელიც არის ანქორ -->
-      
-
-        <!-- დიბის დღის წიგნისთვის -->
+   
          <section class="hero">
         <div class="book-of-day">
-          <!-- დრის წიგნში დავში სირვცე წიგნის სატაურისტვის -->
+        
           <div class="book-title"></div>
           
         
-        <!-- დღის წიგნიში სივრცე წიგნის სურათისადა ქავერისთვის -->
+        
         <div class="book-wrapper">
           <img class="book-img" src="media/images/bookthick.png" alt="book">
           <div class="book-cover"></div>
@@ -39,7 +37,7 @@
 
         </div>
         </section>
-        <!-- დღის წიგნის დასასრული -->
+    
         <section class="search">
           <div class="search-div">
             <input class="search-book" type="text" name="text" id="" placeholder="მოძებნე">
@@ -54,10 +52,18 @@
 
 
 
-        <!-- წიგნები მთლიანად -->
+       
          <h2>წიგნები</h2>
-         <div class="book-container">
-          <div class="filter">
+         <button class="filter-mobile-close hidden">ფილტრაცია</button>
+         <div id="books-all" class="book-container">
+          <div class="filter-index">
+            <div class="filter-buttons">
+               
+               <img class="filterx hidden" src="media/images/close-svgrepo-com.png" alt="">
+
+            </div>
+           
+
             <div class="categories">
             <p>კატეგორია</p>
             <div class="fiction">
@@ -90,14 +96,7 @@
             </div>
 
 
-            <!-- <div class="educational">
-             
-              <label class="checkbox" for="educational">
-                 <input class="filter-input" type="checkbox" name="category" id="educational" value="educational"> 
-                <span class="checkbox-span"></span>
-                საგანმანათლებლო</label>
-              
-            </div> -->
+      
           </div>
 
           <div class="genres categories">
@@ -224,59 +223,100 @@
           </div>
 
 
-          <!-- gneres -->
-
-          <!-- <div class="categories genres">
-
-
-
-            <p>ჟანრი</p>
-            <div class="fiction">
-              <input class="filter-input" type="checkbox" name="fiction1" id="ficton1"> 
-              <label for="fiction1">მხატვრული ლიტერატურა</label>
-            </div>
-
-
-            <div class="nonfiction">
-              <input class="filter-input" type="checkbox" name="nonfictio2n" id="nonficton2"> 
-              <label for="nonfiction2">არამხატვრული ლიტერატურა</label>
-            </div>
-
-            <div class="children">
-              <input class="filter-input" type="checkbox" name="children1" id="children1"> 
-              <label for="children1">საბავშვო წიგნები</label>
-            </div>
-
-
-            <div class="educational">
-              <input class="filter-input" type="checkbox" name="educational2" id="educational2"> 
-              <label for="educational2">საგანმანათლებლო</label>
-            </div>
-
-          </div> -->
-
+         
 
           </div>
           <div class="booksall">
-            <!-- <div class="card"><img class="card-image" src="images/adventuresOfHuckleberryFinn.png" alt=""></div> -->
+         
 
           </div>
+
+
+          
+
 
 
 
           
 
          </div>
+
+         <div class="view-more-div">
+           <button class="view-more">
+             ყველას ნახვა
+          </button>
+         </div>
+        
+        </main>
+
+          <footer class="site-footer">
+    <div class="footer-container">
+
+    <div class="footer-column">
+      <h4>პლატფორმის შესახებ</h4>
+      <ul>
+        <li><a href="#">როგორ მუშაობს</a></li>
+        <li><a href="#">რატომ ჩვენ</a></li>
+        <li><a href="#">ჩვენი მისია</a></li>
+        <li><a href="#">გუნდი</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>იპოვე შენი შემდეგი წიგნი</h4>
+      <ul>
+        <li><a href="#">ჟანრების მიხედვით</a></li>
+        <li><a href="#">განწყობის მიხედვით</a></li>
+        <li><a href="#">სირთულის მიხედვით</a></li>
+        <li><a href="#">დროის მიხედვით</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>რეკომენდაციები</h4>
+      <ul>
+        <li><a href="#">რედაქტორის არჩევანი</a></li>
+        <li><a href="#">პოპულარული წიგნები</a></li>
+        <li><a href="#">დამწყებთათვის</a></li>
+        <li><a href="#">წიგნები, რომლებიც შეგცვლიან</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>დახმარება</h4>
+      <ul>
+        <li><a href="#">ხშირად დასმული კითხვები</a></li>
+        <li><a href="#">კონტაქტი</a></li>
+        <li><a href="#">გამოგვიგზავნე იდეა</a></li>
+        <li><a href="#">შეცდომის შეტყობინება</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>კანონი და პარამეტრები</h4>
+      <ul>
+        <li><a href="#">გამოყენების პირობები</a></li>
+        <li><a href="#">კონფიდენციალურობა</a></li>
+        <li><a href="#">ქუქიების პარამეტრები</a></li>
+        <li><a href="#">ხელმისაწვდომობა</a></li>
+      </ul>
+
+     
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 • წიგნის აღმოჩენის პლატფორმა — იპოვე შენი შემდეგი კითხვა</p>
+  </div>
+</footer>
    
      
 
 
-	</main>
-
-	<footer>
 
 
-	</footer>
+	
 
 
 

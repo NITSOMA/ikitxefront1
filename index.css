@@ -1,18 +1,15 @@
-main {
-  background-color: pink;
-  
-}
 
 
 .book-of-day {
   width: 100%;
   height: 320px;
-  border: 20px double  rgba(39, 37, 37, 0.8);
+  border: 20px double  rgba(17, 16, 16, 0.7);
   border-radius: 10px;
-  background-color: rgb(236, 237, 237);
+  background-color: rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-around;
   align-items: center;
+
 }
 
 
@@ -24,9 +21,9 @@ main {
 
 
 .book-wrapper {
-  /* background-color: blue; */
+
  position: relative;
-  width: 230px;               /* change once, everything scales */
+  width: 230px;             
   perspective: 1000px;
 
   
@@ -44,25 +41,25 @@ main {
 .book-cover {
  position: absolute;
 
-  /* front-face placement */
+
   top: 10%;
   left: 10.5%;
   width: 65%;
   height: 85%;
 
-  /* cover image */
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  /* 3D alignment */
+
   transform-origin: left center;
   transform:
     rotateY(-18deg)
     skewY(-3deg)
     scaleY(1.02);
 
-  /* realism */
+
   border-radius: 3px;
   border-bottom-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -93,22 +90,24 @@ main {
 
 
 
-/*  book container  */
+
 
 .book-container {
   display: flex;
 }
 
-.filter {
+.filter-index {
   width: 300px;
   margin: 5px;
  
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 10px
+  padding: 10px;
+  box-shadow: 3px -3px 9px #bfb7b7,
+              -3px 3px 9px #ffffff;
 }
 
 .categories  {
@@ -116,20 +115,14 @@ main {
   flex-direction: column;
   gap: 20px;
   padding-bottom: 20px;
-  border-bottom: 2px solid rgb(201, 154, 154);
+  border-bottom: 2px solid rgb(192, 131, 131);
+  
 }
 
 
 
 
-/* 
-.filter-input {
-  border: 1px solid black;
-  width: 15px;
-  height: 15px;
-  border-radius: 5px;
-  cursor: pointer;
-} */
+
 
 
 .filter-input:focus {
@@ -138,7 +131,7 @@ main {
 }
 
 .booksall {
-  /* background-color: white; */
+
   width: 100%;
   padding: 10px;
   margin: 5px;
@@ -152,11 +145,22 @@ main {
 .card {
   width: 200px;
   height: 290px;
-  background-color: blue;
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
+   box-shadow: -9px 9px 18px #5a5a5a,
+              9px -9px 18px #ffffff;
+
+  transition: .4s;
+  position: relative;
+
+
   
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 0px 10px 2px #5a5a5a;
 }
 
 .card-image {
@@ -164,9 +168,8 @@ main {
 }
 
 
-/* სექცია ორი საძებნი სივრცე */
 .search {
-  /* background-color: rgb(190, 190, 225); */
+
   padding: 20px;
   
 
@@ -182,7 +185,7 @@ main {
   align-items: center;
   margin: 0 auto;
   padding: 0px 10px;
-  /* background-color: rgb(145, 169, 169); */
+ 
   color: rgb(0, 0, 0);
 
   
@@ -193,7 +196,7 @@ main {
   border-radius: 10px;
   padding: 10px;
   background-color: unset;
-  /* border: 1px solid black; */
+
   width: 100%;
 }
 
@@ -204,16 +207,23 @@ main {
 }
 
 .search-div:hover  {
-  border-color: rgb(160, 19, 19);
+ 
+  border-color: #2C3E50;
   background-color: rgb(255, 255, 255);
   
 }
 
 
-/* .card:hover {
-  width: 220px;
-} */
 
+
+.categories p {
+  font-size: 1.1rem;
+  background-color: rgba(255, 192, 203, 0.03);
+  padding: 5px;
+  border-radius: 5px;
+  width: 70%;
+  
+}
 
 
 .checkbox {
@@ -224,7 +234,7 @@ main {
 }
 
 .checkbox input {
-  display: none; /* hide native checkbox */
+  display: none; 
 }
 
 .checkbox-span {
@@ -250,8 +260,47 @@ main {
 
 
 
+.view-more-div {
+  display: flex;
+  justify-content: flex-end;
+  text-align: center;
+  margin-left: 30px;
+}
 
-/* აქ მექნება როცა გვერს დავაპატარავებ რა მოუვა */
+.view-more {
+
+ 
+  margin-right: 20px;
+  margin-top: 30px;
+  text-align: center;
+  padding: 7px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  margin: 10px 0;
+
+  background-color: #4b6580;
+
+  color: white;
+  outline: 5px solid  rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.view-more:hover {
+   border: 2px solid rgba(128, 128, 128, 0.5);
+  box-shadow: 0 0 20px #6fc5ff50;
+  
+}
+
+.view-more:active {
+   
+
+  
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+
+
 @media (max-width: 768px) {
  
   
@@ -263,17 +312,145 @@ main {
   .book-title h1 {
     font-size: 1.2rem
   }
-/* 
-  .book-img {
-  width: 100%
+
+
+
+  .card {
+      width: 150px;
+   height: 215px;
+  }
 
 }
 
-.book-wrapper {
-  
-  width: 300px; */
+
+
+
+
+
+.site-footer {
+ 
+  background-color: #2C3E50;
+  color: #b3b3b3;
+  padding: 60px 40px 20px;
+  font-family: Arial, sans-serif;
 }
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column h4 {
+  color: #ffffff;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: #b3b3b3;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-column ul li a:hover {
+  text-decoration: underline;
+}
+
+.social-links li a {
+  font-weight: 500;
+}
+
+.language-selector {
+  margin-top: 15px;
+  background: #000;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 8px;
+  width: 100%;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 40px;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 13px;
+}
+
+
+
 
 
  
 
+.filter-mobile-open {
+  position: absolute;
+  z-index: 99999;
+  top: 80px;
+  left: 0;
+  width: 100%;
+}
+
+.filter-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.filter-buttons img {
+  width: 30px;
+  background-color: #615e5e;
+  border-radius: 20px;
+  cursor: pointer;
+
+}
+
+
+.filter-mobile-close {
+width: 100%;
+
+text-align: center;
+padding: 7px;
+border-radius: 10px;
+font-size: 1.1rem;
+margin: 10px 0;
+
+background-color: #4b6580;
+color: white;
+outline: 5px solid  rgb(255, 255, 255);
+cursor: pointer;
+
+}
+
+
+.filter-mobile-close:hover {
+   border: 2px solid rgba(128, 128, 128, 0.5);
+  box-shadow: 0 0 20px #6fc5ff50;
+  
+}
+
+.filter-mobile-close:active {
+   
+
+  
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+
+
+.hidden {
+  display: none;
+}

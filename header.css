@@ -7,6 +7,11 @@
     margin: 0;
     padding: 0;
     font-family:  "Noto Serif Georgian", serif;
+    color:  #333333;
+}
+
+body {
+    background-color: #F4F4F9
 }
 
 
@@ -30,14 +35,16 @@ header {
     z-index: 999999;
     padding: 10px; 
     align-items: center; 
-    background-color: rgb(39, 37, 37);
+    background-color:   #2C3E50
 
 
-    /* პადინგი იგივენაირად უნდა დამეატოს კონტეინერ */
+
+
 }
 nav a {
-    font-size: 1.2rem;
-    color: white;
+    font-size: 1.1rem;
+ 
+    color: #ECF0F1
 
 }
 
@@ -101,11 +108,8 @@ nav a {
 
 .profile {
   background-color: rgb(125, 125, 181);
-  width: 70px;
-  height: 70px;
-  /* display: flex; */
-  /* justify-content: center;
-  align-items: center; */
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   cursor: pointer;
   overflow: hidden;
@@ -119,7 +123,7 @@ nav a {
 .profile-more {
   width: 200px;
   padding: 30px;
-  background-color: rgb(213, 131, 131);
+  background-color: rgb(124, 177, 214);
   position: absolute;
   top: 0;
   right: 73px;
@@ -138,6 +142,19 @@ nav a {
 
 
 .logout {
+    margin-right: 20px;
+  margin-top: 30px;
+  text-align: center;
+  padding: 7px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  margin: 10px 0;
+
+  background-color: #4b6580;
+
+  color: white;
+  outline: 5px solid  rgb(255, 255, 255);
+  
   cursor: pointer;
   
 }
@@ -149,7 +166,7 @@ nav a {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  background-color: rgb(161, 255, 255);
+  background-color:  #F4F4F9;
   position: fixed;
   width: 100%;
   min-height: 100vh;
@@ -157,16 +174,36 @@ nav a {
   inset: 0;
   align-items: center;
   justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+   border: 10px dotted rgb(44, 62, 80, 0.5);
+   
+  
   
 
 }
 
+.nav2 a {
+    color: #2C3E50;
+   
+   
+}
+
+.nav2 a:hover {
+    font-size: 1.3rem;
+    border-bottom: 4px double #60a2e3;
+    
+}
+
 .nav2 img  {
-  width: 20px;
+  width: 35px;
   position: absolute;
   top: 30px;
   right: 30px;
   cursor: pointer;
+  background-color: #95bde6fc;
+  border-radius: 50%;
+  padding: 10px;
 
 }
 
@@ -184,7 +221,7 @@ main {
     width: 100%;
     margin-top: 66px;
     padding: 30px;
-    background-color: rgb(182, 182, 192);
+    background-color: #F4F4F9
 }
 
 
@@ -192,4 +229,9 @@ main {
 .profile-image-main {
     width: 100%;
   
+}
+
+
+button {
+    background-color: #D35400
 }

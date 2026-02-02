@@ -13,13 +13,53 @@
 }
 
 .author-image img {
-    width: 300px;
+    width: 270px;
+    border-radius: 50%;
 }
 
 
 .author-container {
     display: flex;
+    
+    
     max-width: 700px;
     gap: 30px;
     margin-bottom: 30px;
+    
+}
+
+
+.author-info {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.author-country {
+    color: rgb(144, 139, 139);
+}
+
+
+
+@media (max-width: 768px) {
+ 
+  .author-container {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .author-info {
+    align-items: center;
+    border-bottom: 2px dotted rgb(62, 95, 129);
+    padding-bottom: 30px;
+  }
+
+  .author-books-outer * {
+    display: flex;
+    justify-content: center;
+  }
+  
+
 }

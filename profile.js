@@ -4,6 +4,9 @@ let personalEmail = document.querySelector('.personal-email')
 let personalAge= document.querySelector('.personal-age')
 let personalImageContainer = document.querySelector('.personal-image')
 const API_PROFILE_UPDATE = 'http://127.0.0.1:8000/books/profile/update/';
+const API_PROFILE_DELETE = 'http://127.0.0.1:8000/books/profile/delete/';
+const BOOK_TO_READ = 'http://127.0.0.1:8000/books/profile/books-to-read/'
+const BOOK_READ = 'http://127.0.0.1:8000/books/profile/books-read/'
 let cameraImg = document.querySelector('.camera-img')
 let inputImage = document.querySelector('.input-image')
 let booksRead = document.querySelector('.books-read')
@@ -12,6 +15,7 @@ let seeInfo = document.querySelector('.see-info-button')
 let editInfo = document.querySelector('.edit-info')
 let saveInfo =document.querySelector('.save-info')
 let infoDetailed = document.querySelector('.info-detailed')
+let deleteProfile = document.querySelector('.delete-profile')
 
 let closeImage = document.querySelector('.close-image-img');
 
@@ -22,6 +26,67 @@ let inputUsername = document.querySelector('#username')
 let userSpan = document.querySelector('.username-span');
 let emailSpan = document.querySelector('.email-span');
 let ageSpan = document.querySelector('.age-span');
+
+
+
+async function deleteProfilefunc() {
+    try {
+        const response = await fetch(API_PROFILE_DELETE, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${window.accessToken}`,
+            },
+            credentials: "include"
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete comment');
+        }
+
+       
+        let result = null;
+        if (response.status !== 204) {
+            result = await response.json();
+        }
+
+        window.location.href = 'index.html'
+        return result;
+
+    } catch (error) {
+        console.log('Something went wrong:', error);
+        return null; 
+    }
+}
+
+
+
+async function deletebook(url) {
+    try {
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${window.accessToken}`,
+            },
+            // credentials: "include"
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete comment');
+        }
+
+       
+        let result = null;
+        if (response.status !== 204) {
+            result = await response.json();
+        }
+
+        return result;
+
+    } catch (error) {
+        console.log('Something went wrong:', error);
+        return null; 
+    }
+}
 
 
 
@@ -62,12 +127,24 @@ function createCards(books, container){
     books.forEach(element => {
         let card = document.createElement('a');
         card.classList.add('card');
-        card.href = `book.html?id=${element.id}`
+       
+        let bookinfo = document.createElement('div')
+        bookinfo.classList.add('read-book-info')
+        bookinfo.innerHTML = `<p>${element.author}</p>
+        <p>${element.title}</p><p>კითხვის დრო: ${element.reading_hours} საათი</p>`
+        let button = document.createElement('button')
+        button.classList.add('remove-book')
+        button.innerText = 'თაროდან წაშლა'
+        button.setAttribute('data-pk', element.id)
+        bookinfo.appendChild(button) 
+        
+        
         let cardImage = document.createElement('img');
         cardImage.classList.add('card-image');
         cardImage.src = element.image;
-        // card.innerHTML = `<a href="book.html?id=${element.id}"></a>`
+        
         card.appendChild(cardImage);
+        card.appendChild(bookinfo)
         container.appendChild(card);
 
    
@@ -77,17 +154,14 @@ function createCards(books, container){
 }
 
 document.addEventListener('click', function(e) {
-    // 1. Check if the clicked element (or its parent) is the button
+   
     const targetButton = e.target.closest('.see-info-button');
 
-    // 2. If it is the button, run your logic
+
     if (targetButton) {
-        console.log('Button clicked!'); // This should now work
+        console.log('Button clicked!'); 
         
-        // Ensure infoDetailed is defined or selected here
-        // If infoDetailed is specific to this book, you might need to find it relative to the button
-        // Example: const infoDetailed = targetButton.parentElement.querySelector('.info-detailed');
-        
+       
         if (infoDetailed) {
              infoDetailed.classList.toggle('hidden');
         }
@@ -100,7 +174,9 @@ function addData(data) {
         personalImage.src =data.profile_image_url;
         personalImage.classList.add('profile-image')
         personalImageContainer.appendChild(personalImage)
-        personalName.innerHTML += data.username;
+        let username = document.createElement('h3');
+        username.innerHTML = data.username
+        personalName.prepend(username)
         personalEmail.innerHTML = data.email
         
 
@@ -118,7 +194,7 @@ async function updateProfileImage(data) {
                 
             },
             body: data,
-            // credentials: "include"
+            
         });
 
         if (!promise.ok) {
@@ -141,12 +217,12 @@ async function updateProfileInfo(data) {
         const promise = await fetch(API_PROFILE_UPDATE, {
             method: "PATCH",
             headers: {
-                // "Content-Type": "application/json",
+               
                  "Authorization": `Bearer ${window.accessToken}`,
                 
             },
             body: data,
-            // credentials: "include"
+           
         })
 
         if (!promise.ok) {
@@ -221,12 +297,39 @@ saveInfo.addEventListener('click', (e)=> {
     if (inputUsername.value) formData1.append('username', inputUsername.value);
     if (inputEmail.value) formData1.append('email', inputEmail.value);
     
-    // 2. Call your update function
+    
     updateProfileInfo(formData1);
     window.location.href = "profile.html"
 })
 
 
+deleteProfile.addEventListener('click', ()=> {
+    deleteProfilefunc()
+})
+
+
+let removeBook = document.querySelector('.remove-book') 
+removeBook.addEventListener('click', ()=> {
+    let id = removeBook.getAttribute('data-pk')
+    let found = dataUser.books_read.find(obj => obj.id ==id);
+    console.log(dataUser.books_read)
+    console.log(found)
+    
+    if (found) {
+        deletebook(`${BOOK_READ}${id}/`)
+        window.location.href = 'profile.html'
+
+    } else {
+        found = dataUser.books_to_read.find(obj => obj.id ==id);
+         if (found) {
+        deletebook(`${BOOK_TO_READ}${id}/`)
+         window.location.href = 'profile.html'
+    }
+    }
+    
+    
+
+})
 
     } else {
         window.location.href = 'authorization.html';

@@ -60,7 +60,7 @@ greetengA.addEventListener('click', (event) => {
 
 
 
-//  ავტორიზცია რეგისტრაცია 
+
 const API_URL_REGISTRATION = 'http://127.0.0.1:8000/books/register/';
 const API_URL_AUTHORIZATION = 'http://127.0.0.1:8000/books/login/';
 let userData = {}
@@ -69,9 +69,7 @@ async function registrationData(data) {
     try {
         const promise = await fetch(API_URL_REGISTRATION, {
         method: "POST",
-        // headers: {
-        //     "Content-Type": "application/json"
-        // },
+    
         body: data
     })
     const resp = await promise.json();
@@ -82,6 +80,7 @@ async function registrationData(data) {
 
     } else {
         console.log('დარეგისტრირება ვერ შედგა')
+        window.location.href = "authorization.html"
         
     }
 
@@ -89,6 +88,7 @@ async function registrationData(data) {
 
     } catch(error) {
         console.log('დარეგისტრირება ვერ შედგა')
+        window.location.href = "authorization.html"
     }
     
     
@@ -110,16 +110,17 @@ async function authorizationData(data) {
 
         if (!promise.ok) {
             console.log('ავტორიზაცია არ შედგა')
+            window.location.href = 'authorization.html'
             
         }
 
         const response = await promise.json();
         window.accesToken = response.access;
         console.log('ავტორიზაცია წარმატებით დასრულდა')
-        window.location.href = 'authorization.html'
+        window.location.href = 'index.html'
 
     } catch(error) {
-        
+        window.location.href = 'authorization.html'
         console.log(error)
     }
     
@@ -132,7 +133,9 @@ async function authorizationData(data) {
 
 registration.addEventListener('click', (event)=> {
 
+
     event.preventDefault()
+    
     const formData = new FormData();
         formData.append('username', username.value);
         formData.append('email', email.value);

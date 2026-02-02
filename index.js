@@ -5,6 +5,13 @@ let searchBook = document.querySelector('.search-book')
 let bookCover = document.querySelector('.book-cover');
 let bookTitle = document.querySelector('.book-title');
 const checkBoxesCategory = document.querySelectorAll('input[name="category"]');
+let viewMore = document.querySelector('.view-more')
+let filterX = document.querySelector('.filterx');
+let filter = document.querySelector('.filter-index');
+let categories = document.querySelector('.categories')
+let filterbut = document.querySelector('.filter-buttons');
+let filterMobClose = document.querySelector('.filter-mobile-close')
+
 
 const checkBoxesGenres = document.querySelectorAll('input[name="genre"]');
 
@@ -12,14 +19,43 @@ const checkBoxesGenres = document.querySelectorAll('input[name="genre"]');
 
 let checkBoxeAll = [...checkBoxesCategory, ...checkBoxesGenres]
 
-// <div class="children">
-              
-//               <label class="checkbox" for="children">
-//                 <input class="filter-input" type="checkbox" name="category" id="children"  value="children"> 
-//                  <span class="checkbox-span"></span>
-//                 საბავშვო წიგნები</label>
-             
-//             </div>
+function resizeFilter(e) {
+    if (e.matches) {
+        filter.classList.add('hidden')
+        categories.classList.add('hidden');
+        console.log(filter)
+        filterMobClose.classList.remove('hidden');
+        filterX.classList.remove('hidden')
+
+    } else {
+        filter.classList.remove('filter-mobile-open')
+        filter.classList.remove('hidden')
+        categories.classList.remove('hidden')
+        filterMobClose.classList.add('hidden')
+        filterX.classList.add('hidden')
+
+    }
+    
+}
+
+resizeFilter(mediaQuery)
+
+mediaQuery.addEventListener('change', resizeFilter)
+    
+
+filterMobClose.addEventListener('click', ()=> {
+    if (!filterMobClose.classList.contains('hidden')) {
+        console.log('laa')
+        filter.classList.remove('hidden')
+        filter.classList.add('filter-mobile-open')
+        filterX.classList.remove('hidden')
+    }
+})
+
+filterX.addEventListener('click', ()=> {
+    filter.classList.remove('filter-mobile-open')
+    filter.classList.add('hidden')
+})
 
 
 
@@ -132,14 +168,20 @@ function createCards(books){
     books.forEach(element => {
         let card = document.createElement('a');
         card.classList.add('card');
+        
         card.href = `book.html?id=${element.id}`
         let cardImage = document.createElement('img');
         cardImage.classList.add('card-image');
         
         cardImage.src = element.image;
-        // card.innerHTML = `<a href="book.html?id=${element.id}"></a>`
+      
         card.appendChild(cardImage);
         booksContainer.appendChild(card);
+        if (element.id > 12) {
+            
+            card.classList.add('hidden')
+            viewMore.classList.remove('hidden')
+        }
 
    
     });
@@ -157,6 +199,24 @@ async function main1() {
         filterBooks(searchBook, books,booksContainer )
     })
     filterBooksByCategory(books,booksContainer )
+
+   
+    viewMore.addEventListener('click', ()=> {
+        let cards = document.querySelectorAll('.card');
+        cards.forEach(element => {
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden')
+                
+            }
+        })
+        viewMore.classList.add('hidden')
+    })
+
+
+    filterbut.addEventListener('click', ()=> {
+        filter.classList.remove('filter-mobile-open')
+
+    })
 }
 
 main1()

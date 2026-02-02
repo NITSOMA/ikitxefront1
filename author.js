@@ -35,7 +35,6 @@ function createCards(books){
         let cardImage = document.createElement('img');
         cardImage.classList.add('card-image');
         cardImage.src = element.image;
-        // card.innerHTML = `<a href="book.html?id=${element.id}"></a>`
         card.appendChild(cardImage);
         authorBooks.appendChild(card);
 

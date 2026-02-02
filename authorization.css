@@ -5,6 +5,15 @@
 }
 
 
+main {
+    background-color: unset;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 button, input {
     all: unset;
 }
@@ -18,12 +27,15 @@ a, button {
     left: 50%;
     top: 20%;
     transform: translateX(-50%);
-    max-width: 700px;
+    width: 90%;
+    max-width: 500px;
     padding: 40px;
     display: flex;
     flex-direction: column;
     gap: 50px;
-    background-color: rgb(174, 207, 207);
+     background-color:  rgba(44, 62, 80, 0.2);
+   z-index: 9999;
+   
     border-radius: 20px;
     
 }
@@ -33,7 +45,7 @@ a, button {
     display: flex;
     gap: 50px;
     
-    border-bottom: 1px solid green;
+    border-bottom: 1px solid #6790b9
    
 
 }
@@ -45,26 +57,52 @@ form {
 }
 
 input {
-    border: 3px solid rgba(50, 94, 225, 0.359);
+    border: 3px solid #4b6b95;
     padding: 10px;
     border-radius: 7px;
     
 
+
 }
 
-.authorization2 button, .registration button {
-   
-     border: 1px solid black;
-     text-align: center;
-     width: 200px;
-     margin: 40px auto 0 auto;
-    padding: 5px;
-    border-radius: 10px;
-    background-color: rgb(75, 88, 75);
-    font-size: 1.2rem;
-    color: rgb(255, 255, 255);
-    
+input:focus {
+    background-color:  #F4F4F9;
 }
+
+
+
+
+
+
+
+.authorization2, .registration {
+   
+    width: 100%;
+    text-align: center;
+    padding: 7px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    margin: 10px 0;
+   
+    background-color: #4b6580;
+    color: white;
+    outline: 3px solid  rgb(245, 230, 230);
+    cursor: pointer;
+}
+
+.authorization2:hover, .registration:hover  {
+    border: 2px solid rgba(128, 128, 128, 0.5);
+  box-shadow: 0 0 20px #6fc5ff50;
+
+}
+
+.authorization2:active, .registration:active  {
+    box-shadow: none;
+    transform: scale(0.98);
+
+}
+
+
 
 label span {
     color: red;
@@ -92,4 +130,25 @@ label span {
 
 .hidden {
     display: none;
+}
+
+
+
+@media (max-width: 768px) {
+ 
+  
+
+.titles {
+    text-align: center;
+    font-size: 0.6rem;
+    gap: 10px;
+
+}
+.titles > *  {
+    width: 100%;
+    
+    text-align: center;
+    
+}
+
 }

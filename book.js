@@ -7,6 +7,8 @@ let readed = document.querySelector('.readed');
 let willRead = document.querySelector('.will-read');
 const BOOK_TO_READ = 'http://127.0.0.1:8000/books/profile/books-to-read/'
 const BOOK_READ = 'http://127.0.0.1:8000/books/profile/books-read/'
+let notadd = document.querySelector('.notification-add')
+let notnotadd = document.querySelector('.notification-not-add')
 
 const bookId = params.get("id");
 
@@ -34,6 +36,8 @@ async function getBook(id) {
 
 
 
+
+
 async function savebook(data, url) {
   
     try {
@@ -44,21 +48,52 @@ async function savebook(data, url) {
                  "Authorization": `Bearer ${window.accessToken}`,
                  
                 },
-            // credentials: "include",
+          
             body: data
         })
         const result = await response.json();
 
-        if (!response.ok) {
-            console.error('Server Validation Errors:', result); 
-            throw new Error('Server responded with an error');
+
+        if (response.status === 409) {
+            console.log('Book already exists');
+            
+            notnotadd.innerText = "უკვე დამატებულია!";
+            
+            notnotadd.classList.remove('hidden');
+            setTimeout(() => {
+                notnotadd.classList.add('hidden');
+            }, 2000);
+            return; 
         }
 
-        
+        if (!response.ok) {
+            console.error('Server Validation Errors:', result); 
+            notnotadd.classList.remove('hidden')
+            setTimeout(()=> {
+                notnotadd.classList.add('hidden')
+            }, 2000)
+
+           
+            throw new Error('Server responded with an error');
+            
+        }
+
+        notadd.classList.remove('hidden')
+         setTimeout(()=> {
+                notadd.classList.add('hidden')
+            }, 1000)
+
+           
         return result
 
     } catch(error) {
         console.log('seomthing went wrong', error)
+        notnotadd.classList.remove('hidden')
+        setTimeout(()=> {
+                notnotadd.classList.add('hidden')
+            }, 2000)
+
+            
     }
     
 
@@ -73,14 +108,14 @@ async function deletebook(url) {
             headers: {
                 'Authorization': `Bearer ${window.accessToken}`,
             },
-            // credentials: "include"
+           
         });
 
         if (!response.ok) {
             throw new Error('Failed to delete comment');
         }
 
-        // Some DELETE endpoints return no content
+       
         let result = null;
         if (response.status !== 204) {
             result = await response.json();
@@ -90,7 +125,7 @@ async function deletebook(url) {
 
     } catch (error) {
         console.log('Something went wrong:', error);
-        return null; // optional, to ensure function always returns something
+        return null; 
     }
 }
 
@@ -149,7 +184,7 @@ async function deleteCommentfunc(commentId) {
             throw new Error('Failed to delete comment');
         }
 
-        // Some DELETE endpoints return no content
+      
         let result = null;
         if (response.status !== 204) {
             result = await response.json();
@@ -159,7 +194,7 @@ async function deleteCommentfunc(commentId) {
 
     } catch (error) {
         console.log('Something went wrong:', error);
-        return null; // optional, to ensure function always returns something
+        return null; 
     }
 }
 
@@ -187,7 +222,7 @@ function createBook(data) {
     let readingHour = document.querySelector('.reading-hour');
     readingHour.innerHTML += `${data.reading_hours} საათი`
     
-    // imageArea.innerHTML += `<img src="${data.image}" alt="${data.title}">`;
+  
     author.innerHTML = data.author;
     author.href = `author.html?id=${data.author_id}`
     title.innerHTML = data.title;
@@ -297,15 +332,7 @@ async function main() {
 
             
 
-    // })
-    //    } else {
-    //     dataOfUser = false
-    //    }
 
-    
-
-
-    //     //  delete comment part
          let deletecomment = document.querySelectorAll('.delete-comment');
          
          
@@ -320,13 +347,11 @@ async function main() {
                 await deleteCommentfunc(commentID);
                 
                 
-                //  location.reload(); // only if deletion succeeded
+               
             } catch (err) {
                 console.log("Failed to delete comment", err);
             }
-            // await deleteCommentfunc(commentID)
-
-            // location.reload();
+          
 
 
         })
@@ -337,9 +362,6 @@ async function main() {
         
     }
 
-    //   let commentID = data.comments.find(c => c.user_id === 5);
-    //         deleteCommentfunc()
-    
 
    
   

@@ -6,6 +6,7 @@ const API_REFRESH = 'http://127.0.0.1:8000/books/refresh/'
 const API_LOGOUT = 'http://127.0.0.1:8000/books/logout/'
 
 
+
 async function getHeader() {
     const response = await fetch('header.html');
     const headerText = await response.text();
@@ -65,7 +66,7 @@ async function refreshAccessToken() {
     try {
         const response = await fetch(API_REFRESH, { method: "POST", credentials: "include" });
         if (!response.ok) {
-            window.accessToken = null;  // no token if refresh fails
+            window.accessToken = null; 
             
             return;
             
@@ -87,6 +88,7 @@ function resize(e, authorization, nav1, menuIcon, profileContainer) {
         authorization.classList.add('hidden');
         nav1.classList.add('hidden');
         menuIcon.classList.remove('hidden');
+
     } else  {
        
         if (profileContainer.classList.contains('hidden')) {
@@ -103,8 +105,6 @@ function resize(e, authorization, nav1, menuIcon, profileContainer) {
 async function logout() {
     try {
         await fetch(API_LOGOUT, { method: "POST", credentials: "include" });
-
-        // Clear all frontend state immediately
         window.accessToken = null;
         return true;
     } catch (err) {
