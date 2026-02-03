@@ -12,7 +12,7 @@ const authorId = params.get("id");
 
 async function getAuthor(id) {
     try {
-        const promise = await fetch(`http://127.0.0.1:8000/books/author/${id}`);
+        const promise = await fetch(`https://nitsoma.pythonanywhere.com/books/author/${id}`);
         if (!promise.ok) {
             console.log(`პრობლემაა, სტატუსი: ${promise.status}`)
         }

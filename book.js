@@ -1,12 +1,12 @@
 
 
 const params = new URLSearchParams(window.location.search);
-const commentsUrl = `http://127.0.0.1:8000/books/comments/`
-const ratingURL = `http://127.0.0.1:8000/books/ratings/add/`
+const commentsUrl = `https://nitsoma.pythonanywhere.com/books/comments/`
+const ratingURL = `https://nitsoma.pythonanywhere.com/books/ratings/add/`
 let readed = document.querySelector('.readed');
 let willRead = document.querySelector('.will-read');
-const BOOK_TO_READ = 'http://127.0.0.1:8000/books/profile/books-to-read/'
-const BOOK_READ = 'http://127.0.0.1:8000/books/profile/books-read/'
+const BOOK_TO_READ = 'https://nitsoma.pythonanywhere.com/books/profile/books-to-read/'
+const BOOK_READ = 'https://nitsoma.pythonanywhere.com/books/profile/books-read/'
 let notadd = document.querySelector('.notification-add')
 let notnotadd = document.querySelector('.notification-not-add')
 
@@ -18,7 +18,7 @@ const bookId = params.get("id");
 
 async function getBook(id) {
     try {
-        const promise = await fetch(`http://127.0.0.1:8000/books/book/${id}`);
+        const promise = await fetch(`https://nitsoma.pythonanywhere.com/books/book/${id}`);
         if (!promise.ok) {
             console.log(`პრობლემაა, სტატუსი: ${promise.status}`)
         }
@@ -172,7 +172,7 @@ async function postComment(bookId, userId, CommentText) {
 
 async function deleteCommentfunc(commentId) {
     try {
-        const response = await fetch(`http://127.0.0.1:8000/books/comments/${commentId}/`, {
+        const response = await fetch(`https://nitsoma.pythonanywhere.com/books/comments/${commentId}/`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${window.accessToken}`,

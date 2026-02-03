@@ -1,6 +1,6 @@
 let randomPk = Math.round(Math.random() * 9) + 1;
-const API_URL = 'http://127.0.0.1:8000/books/book/';
-const API_URLS = 'http://127.0.0.1:8000/books/books/';
+const API_URL = 'https://nitsoma.pythonanywhere.com/books/book/';
+const API_URLS = 'https://nitsoma.pythonanywhere.com/books/books/';
 let searchBook = document.querySelector('.search-book')
 let bookCover = document.querySelector('.book-cover');
 let bookTitle = document.querySelector('.book-title');

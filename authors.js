@@ -1,4 +1,4 @@
-const API_AUTHORS = 'http://127.0.0.1:8000/books/authors/';
+const API_AUTHORS = 'https://nitsoma.pythonanywhere.com/books/authors/';
 
 
 

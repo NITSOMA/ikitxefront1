@@ -61,8 +61,8 @@ greetengA.addEventListener('click', (event) => {
 
 
 
-const API_URL_REGISTRATION = 'http://127.0.0.1:8000/books/register/';
-const API_URL_AUTHORIZATION = 'http://127.0.0.1:8000/books/login/';
+const API_URL_REGISTRATION = 'https://nitsoma.pythonanywhere.com/books/register/';
+const API_URL_AUTHORIZATION = 'https://nitsoma.pythonanywhere.com/books/login/';
 let userData = {}
 
 async function registrationData(data) {

@@ -1,9 +1,9 @@
 
 let mediaQuery = window.matchMedia(("(max-width: 768px)"));
 let headerContainer = document.querySelector('.header-container');
-const API_PROFILE = 'http://127.0.0.1:8000/books/me/';
-const API_REFRESH = 'http://127.0.0.1:8000/books/refresh/'
-const API_LOGOUT = 'http://127.0.0.1:8000/books/logout/'
+const API_PROFILE = 'https://nitsoma.pythonanywhere.com/books/me/';
+const API_REFRESH = 'https://nitsoma.pythonanywhere.com/books/refresh/'
+const API_LOGOUT = 'https://nitsoma.pythonanywhere.com/logout/'
 
 
 
