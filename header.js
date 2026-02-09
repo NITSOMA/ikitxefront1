@@ -21,11 +21,11 @@ window.accessToken = null;
 async function bootstrapAuth() {
     await refreshAccessToken();
 
-    if (window.accessToken) {
-        await getProfile();
-    } else {
-       console.log('eror')
-    }
+    // if (window.accessToken) {
+    //     await getProfile();
+    // } else {
+    //    console.log('eror')
+    // }
 }
 
 
