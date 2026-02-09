@@ -171,7 +171,7 @@ if (userData) {
 
 
 
-logoutBtn.addEventListener('click', ()=> {
+logoutBtn.addEventListener('click', async ()=> {
     const success = await logout();
     if (success) {
         profileContainer.classList.add('hidden');
