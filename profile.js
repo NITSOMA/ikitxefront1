@@ -36,7 +36,7 @@ async function deleteProfilefunc() {
             headers: {
                 'Authorization': `Bearer ${window.accessToken}`,
             },
-            credentials: "include"
+            
         });
 
         if (!response.ok) {
@@ -44,10 +44,7 @@ async function deleteProfilefunc() {
         }
 
        
-        let result = null;
-        if (response.status !== 204) {
-            result = await response.json();
-        }
+      
 
         window.location.href = 'index.html'
         return result;
@@ -197,15 +194,34 @@ async function updateProfileImage(data) {
             
         });
 
+
+        if (response.status === 401) {
+            console.log("Token expired, refreshing...");
+            await refreshAccessToken();
+            if (window.accessToken) {
+               
+                response = await fetch(API_PROFILE_UPDATE, {
+                    method: "PATCH",
+                    headers: { "Authorization": `Bearer ${window.accessToken}` },
+                    body: data,
+                });
+            } else {
+                return false; 
+            }
+        }
+
         if (!promise.ok) {
             console.log(window.accesToken)
             console.log('შეცვლა არ შედგა')
+            return false
         }
         const response = await promise.json();
+        return true
        
 
     } catch(error) {
         console.log(error)
+        return false
     }
  
 }
@@ -219,11 +235,25 @@ async function updateProfileInfo(data) {
             headers: {
                
                  "Authorization": `Bearer ${window.accessToken}`,
+                "Content-Type": "application/json"
                 
             },
             body: data,
            
         })
+
+        if (response.status === 401) {
+            await refreshAccessToken();
+            if (window.accessToken) {
+                response = await fetch(API_PROFILE_UPDATE, {
+                    method: "PATCH",
+                    headers: { "Authorization": `Bearer ${window.accessToken}` },
+                    body: data,
+                });
+            } else {
+                return false;
+            }
+        }
 
         if (!promise.ok) {
             console.log(window.accesToken)
@@ -278,8 +308,13 @@ inputImage.addEventListener('change',   async ()=> {
     const formData = new FormData();
     
     formData.append('profile_image', file)
-    await updateProfileImage(formData)
-    window.location.reload()
+    const success = await updateProfileImage(formData)
+    if (success) {
+        window.location.reload(); 
+    } else {
+        console.log("update failed")
+    }
+   
   
     
 })
@@ -300,8 +335,12 @@ saveInfo.addEventListener('click', async (e)=> {
     if (inputEmail.value) formData1.append('email', inputEmail.value);
     
     
-    await updateProfileInfo(formData1);
-    window.location.href = "profile.html"
+    const success = await updateProfileInfo(formData1);
+    if (success) {
+        window.location.reload(); 
+    } else {
+        console.log("update failed")
+    }
 })
 
 
