@@ -228,14 +228,16 @@ async function updateProfileInfo(data) {
         if (!promise.ok) {
             console.log(window.accesToken)
             console.log('შეცვლა არ შედგა')
-            return
+            return false
         }
         const response = await promise.json();
         console.log('new')
+        return true;
        
 
     } catch(error) {
         console.log(error)
+        return false
     }
  
 }
@@ -268,7 +270,7 @@ if (dataUser.books_read.length > 0) {
     
             })
 
-inputImage.addEventListener('change',   ()=> {
+inputImage.addEventListener('change',   async ()=> {
     console.log('inside addeventlistener', dataUser)
     const file = inputImage.files[0];
     console.log(file)
@@ -276,8 +278,8 @@ inputImage.addEventListener('change',   ()=> {
     const formData = new FormData();
     
     formData.append('profile_image', file)
-    updateProfileImage(formData)
-    window.location.href = "profile.html"
+    await updateProfileImage(formData)
+    window.location.reload()
   
     
 })
@@ -289,7 +291,7 @@ editInfo.addEventListener('click', (e)=> {
     redactInfo(dataUser)
 })
 
-saveInfo.addEventListener('click', (e)=> {
+saveInfo.addEventListener('click', async (e)=> {
     e.preventDefault()
    const formData1 = new FormData();
 
@@ -298,7 +300,7 @@ saveInfo.addEventListener('click', (e)=> {
     if (inputEmail.value) formData1.append('email', inputEmail.value);
     
     
-    updateProfileInfo(formData1);
+    await updateProfileInfo(formData1);
     window.location.href = "profile.html"
 })
 
