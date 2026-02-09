@@ -22,7 +22,7 @@ async function bootstrapAuth() {
     await refreshAccessToken();
 
     if (window.accessToken) {
-        // await getProfile();
+        await getProfile();
     } else {
        console.log('eror')
     }
