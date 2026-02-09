@@ -106,11 +106,11 @@ async function logout() {
     try {
         await fetch(API_LOGOUT, {
             method: "POST", 
+            credentials: "include",
             headers: {
-                "Authorization": `Bearer ${window.accessToken}`,
                 "Content-Type": "application/json"
             },
-            credentials: "include" });
+             });
         window.accessToken = null;
         sessionStorage.clear();
         return true;
