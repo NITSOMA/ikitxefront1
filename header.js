@@ -104,11 +104,19 @@ function resize(e, authorization, nav1, menuIcon, profileContainer) {
 
 async function logout() {
     try {
-        await fetch(API_LOGOUT, { method: "POST", credentials: "include" });
+        await fetch(API_LOGOUT, {
+            method: "POST", 
+            headers: {
+                "Authorization": `Bearer ${window.accessToken}`,
+                "Content-Type": "application/json"
+            },
+            credentials: "include" });
         window.accessToken = null;
+        sessionStorage.clear();
         return true;
     } catch (err) {
         console.error(err);
+        return false
     }
 }
 
