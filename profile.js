@@ -195,7 +195,7 @@ async function updateProfileImage(data) {
         });
 
 
-        if (response.status === 401) {
+        if (promise.status === 401) {
             console.log("Token expired, refreshing...");
             await refreshAccessToken();
             if (window.accessToken) {
@@ -242,7 +242,7 @@ async function updateProfileInfo(data) {
            
         })
 
-        if (response.status === 401) {
+        if (promise.status === 401) {
             await refreshAccessToken();
             if (window.accessToken) {
                 response = await fetch(API_PROFILE_UPDATE, {
