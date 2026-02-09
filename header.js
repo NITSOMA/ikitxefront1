@@ -22,7 +22,7 @@ async function bootstrapAuth() {
     await refreshAccessToken();
 
     if (window.accessToken) {
-        await getProfile();
+        // await getProfile();
     } else {
        console.log('eror')
     }
@@ -172,7 +172,8 @@ if (userData) {
 
 
 logoutBtn.addEventListener('click', ()=> {
-    if (logout()) {
+    const success = await logout();
+    if (success) {
         profileContainer.classList.add('hidden');
         authorization.classList.remove('hidden');
         window.location.href = 'index.html'
