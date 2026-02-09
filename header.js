@@ -3,7 +3,7 @@ let mediaQuery = window.matchMedia(("(max-width: 768px)"));
 let headerContainer = document.querySelector('.header-container');
 const API_PROFILE = 'https://nitsoma.pythonanywhere.com/books/me/';
 const API_REFRESH = 'https://nitsoma.pythonanywhere.com/books/refresh/'
-const API_LOGOUT = 'https://nitsoma.pythonanywhere.com/logout/'
+const API_LOGOUT = 'https://nitsoma.pythonanywhere.com/books/logout/'
 
 
 
