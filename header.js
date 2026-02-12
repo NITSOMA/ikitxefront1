@@ -108,65 +108,90 @@ async function logout() {
     }
 }
 
-async function main() { 
-    
+async function main() {
+   
     const headerText = await getHeader();
     headerContainer.innerHTML = headerText;
 
+   
     let authorization = document.querySelector('.authorization');
+    let profileContainer = document.querySelector('.profile-container');
+    let profile = document.querySelector('.profile'); // Where the image goes
+    let userEmail = document.querySelector('.useremail'); // Where email goes
+    let profileMore = document.querySelector('.profile-more'); // The dropdown menu
+    
     let nav1 = document.querySelector('.nav1');
     let nav2 = document.querySelector('.nav2');
     let menuIcon = document.querySelector('.menu-icon');
-    let profileContainer = document.querySelector('.profile-container');
-    let profile = document.querySelector('.profile');
-    let userEmail = document.querySelector('.useremail');
-    let profileMore = document.querySelector('.profile-more'); // The dropdown
     let nav2Image = document.querySelector('.nav2-img');
     let logoutBtn = document.querySelector('.logout');
 
-
+   
     await bootstrapAuth();
     const userData = await getProfile();
 
    
     if (userData) {
-      
+       
+        
+       
         if (userData.profile_image_url) {
-         
             profile.innerHTML = ''; 
-            
             const image = document.createElement('img');
             image.src = userData.profile_image_url;
-            image.classList.add('profile-image-main');
+            
+            image.classList.add('profile-image-main'); 
+           
+            image.style.width = "40px";
+            image.style.height = "40px";
+            image.style.borderRadius = "50%";
+            image.style.objectFit = "cover";
             profile.appendChild(image);
         }
-        userEmail.innerHTML = userData.email;
+
         
-        authorization.classList.add('hidden');
-        profileContainer.classList.remove('hidden');
+        userEmail.innerHTML = userData.email;
+
+      
+        authorization.classList.add('hidden');      
+        profileContainer.classList.remove('hidden'); 
+
     } else {
-       
+        
+        
+        
         authorization.classList.remove('hidden');
+        
+      
         profileContainer.classList.add('hidden');
     }
 
-
+   
     profileContainer.addEventListener('click', (e) => {
-      
+       
         e.stopPropagation(); 
+        
+      
         profileMore.classList.toggle('hidden');
     });
 
-    
+  
     document.addEventListener('click', () => {
         if (!profileMore.classList.contains('hidden')) {
             profileMore.classList.add('hidden');
         }
     });
 
- 
-    resize(mediaQuery, authorization, nav1, menuIcon, profileContainer);
+   
+    logoutBtn.addEventListener('click', async (e) => {
+        e.stopPropagation(); // Prevent bubbling
+        const success = await logout();
+        if (success) {
+            window.location.href = 'index.html';
+        }
+    });
 
+    resize(mediaQuery, authorization, nav1, menuIcon, profileContainer);
     mediaQuery.addEventListener('change', () => {
         resize(mediaQuery, authorization, nav1, menuIcon, profileContainer);
     });
@@ -180,16 +205,6 @@ async function main() {
     nav2Image.addEventListener('click', () => {
         nav2.classList.add('hidden');
     });
-
-    logoutBtn.addEventListener('click', async () => {
-        const success = await logout();
-        if (success) {
-            profileContainer.classList.add('hidden');
-            authorization.classList.remove('hidden');
-            window.location.href = 'index.html';
-        }
-    });
 }
-
 
 main();
