@@ -235,3 +235,15 @@ main {
 button {
     background-color: #D35400
 }
+
+
+
+.authorization, 
+.profile-container {
+    display: none !important;
+}
+
+
+.auth-visible {
+    display: flex !important; 
+}
