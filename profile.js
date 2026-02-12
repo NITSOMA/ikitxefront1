@@ -326,22 +326,44 @@ editInfo.addEventListener('click', (e)=> {
     redactInfo(dataUser)
 })
 
-saveInfo.addEventListener('click', async (e)=> {
-    e.preventDefault()
-   const formData1 = new FormData();
 
-    if (inputAge.value) formData1.append('age', inputAge.value);
-    if (inputUsername.value) formData1.append('username', inputUsername.value);
-    if (inputEmail.value) formData1.append('email', inputEmail.value);
-    
-    
+saveInfo.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const formData1 = new FormData();
+
+  
+    const newAge = inputAge.value;
+    const newUsername = inputUsername.value;
+    const newEmail = inputEmail.value;
+
+    if (newAge) formData1.append('age', newAge);
+    if (newUsername) formData1.append('username', newUsername);
+    if (newEmail) formData1.append('email', newEmail);
+
     const success = await updateProfileInfo(formData1);
+    
     if (success) {
-        window.location.reload(); 
+      
+        if (newUsername) userSpan.innerHTML = newUsername;
+        if (newEmail) emailSpan.innerHTML = newEmail;
+        if (newAge) ageSpan.innerHTML = newAge;
+
+        userSpan.classList.remove('hidden');
+        emailSpan.classList.remove('hidden');
+        ageSpan.classList.remove('hidden');
+
+        inputAge.classList.add('hidden');
+        inputEmail.classList.add('hidden');
+        inputUsername.classList.add('hidden');
+
+        saveInfo.classList.add('hidden');
+        editInfo.classList.remove('hidden');
+        
+      
     } else {
-        console.log("update failed")
+        console.log("update failed");
     }
-})
+});
 
 
 deleteProfile.addEventListener('click', ()=> {
