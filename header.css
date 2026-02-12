@@ -1,5 +1,4 @@
-/*  ზოგადი css */
-
+/*  ზოგადი css */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@100..900&display=swap');
 
 * {
@@ -14,7 +13,6 @@ body {
     background-color: #F4F4F9
 }
 
-
 button, input, textarea {
     all:  unset;
 }
@@ -22,12 +20,9 @@ button, input, textarea {
 a {
     color: black;
     text-decoration: none;
-    
 }
 
-
 header {
-    
     width: 100%;
     display: flex;
     position: fixed; 
@@ -36,16 +31,11 @@ header {
     padding: 10px; 
     align-items: center; 
     background-color:   #2C3E50
-
-
-
-
 }
+
 nav a {
     font-size: 1.1rem;
- 
     color: #ECF0F1
-
 }
 
 .logo {
@@ -54,7 +44,6 @@ nav a {
 
 .imagelogo {
     width: 50px;
-     
 }
 
 .nav1, .authorization {
@@ -84,27 +73,20 @@ nav a {
     cursor: pointer;
     position: absolute;
     right: 10px;
-   
 }
-
 
 .authorization a {
     display: flex;
     align-items: center;
 }
 
-
 .profile-container {
     position: relative;
-
     width: 100%;
     display: flex;
     justify-content: flex-end;
     margin-right: 40px;
-
 }
-
-
 
 .profile {
   background-color: rgb(125, 125, 181);
@@ -113,12 +95,9 @@ nav a {
   border-radius: 50%;
   cursor: pointer;
   overflow: hidden;
-    object-fit:cover;
-   object-position: top; 
-  
+  object-fit:cover;
+  object-position: top; 
 }
-
-
 
 .profile-more {
   width: 200px;
@@ -133,36 +112,23 @@ nav a {
   flex-direction: column;
   gap: 15px;
   align-items: center;
-  
-  
-  
 }
 
-
-
-
 .logout {
-    margin-right: 20px;
+  margin-right: 20px;
   margin-top: 30px;
   text-align: center;
   padding: 7px;
   border-radius: 10px;
   font-size: 1.1rem;
   margin: 10px 0;
-
   background-color: #4b6580;
-
   color: white;
   outline: 5px solid  rgb(255, 255, 255);
-  
   cursor: pointer;
-  
 }
 
-
-
 .nav2 {
-  
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -176,23 +142,16 @@ nav a {
   justify-content: center;
   font-size: 1.2rem;
   font-weight: 700;
-   border: 10px dotted rgb(44, 62, 80, 0.5);
-   
-  
-  
-
+  border: 10px dotted rgb(44, 62, 80, 0.5);
 }
 
 .nav2 a {
     color: #2C3E50;
-   
-   
 }
 
 .nav2 a:hover {
     font-size: 1.3rem;
     border-bottom: 4px double #60a2e3;
-    
 }
 
 .nav2 img  {
@@ -204,17 +163,12 @@ nav a {
   background-color: #95bde6fc;
   border-radius: 50%;
   padding: 10px;
-
 }
 
 
 .hidden {
     display: none !important;
 }
-
-
-
-
 
 main {
     min-height: 100vh;
@@ -224,26 +178,12 @@ main {
     background-color: #F4F4F9
 }
 
-
-
 .profile-image-main {
     width: 100%;
-  
 }
-
 
 button {
     background-color: #D35400
 }
 
 
-
-.authorization, 
-.profile-container {
-    display: none !important;
-}
-
-
-.auth-visible {
-    display: flex !important; 
-}
