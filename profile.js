@@ -235,7 +235,7 @@ async function updateProfileInfo(data) {
             headers: {
                
                  "Authorization": `Bearer ${window.accessToken}`,
-                "Content-Type": "application/json"
+                
                 
             },
             body: data,
