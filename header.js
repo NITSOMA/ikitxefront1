@@ -108,8 +108,8 @@ async function logout() {
     }
 }
 
-async function main(params) {
-   
+async function main() { 
+    
     const headerText = await getHeader();
     headerContainer.innerHTML = headerText;
 
@@ -120,32 +120,51 @@ async function main(params) {
     let profileContainer = document.querySelector('.profile-container');
     let profile = document.querySelector('.profile');
     let userEmail = document.querySelector('.useremail');
-    let profileMore = document.querySelector('.profile-more');
+    let profileMore = document.querySelector('.profile-more'); // The dropdown
     let nav2Image = document.querySelector('.nav2-img');
     let logoutBtn = document.querySelector('.logout');
 
- 
+
     await bootstrapAuth();
     const userData = await getProfile();
 
- 
+   
     if (userData) {
-     
+      
         if (userData.profile_image_url) {
+         
+            profile.innerHTML = ''; 
+            
             const image = document.createElement('img');
             image.src = userData.profile_image_url;
             image.classList.add('profile-image-main');
             profile.appendChild(image);
         }
         userEmail.innerHTML = userData.email;
-       profileContainer.classList.add('auth-visible');
-        authorization.classList.remove('auth-visible');
-    } else {
-        authorization.classList.add('auth-visible');
-        profileContainer.classList.remove('auth-visible');
-    }
         
+        authorization.classList.add('hidden');
+        profileContainer.classList.remove('hidden');
+    } else {
+       
+        authorization.classList.remove('hidden');
+        profileContainer.classList.add('hidden');
+    }
 
+
+    profileContainer.addEventListener('click', (e) => {
+      
+        e.stopPropagation(); 
+        profileMore.classList.toggle('hidden');
+    });
+
+    
+    document.addEventListener('click', () => {
+        if (!profileMore.classList.contains('hidden')) {
+            profileMore.classList.add('hidden');
+        }
+    });
+
+ 
     resize(mediaQuery, authorization, nav1, menuIcon, profileContainer);
 
     mediaQuery.addEventListener('change', () => {
@@ -162,12 +181,6 @@ async function main(params) {
         nav2.classList.add('hidden');
     });
 
-    profileContainer.addEventListener('click', () => {
-        if (!profileContainer.classList.contains('hidden')) {
-            profileMore.classList.toggle('hidden');
-        } 
-    });
-
     logoutBtn.addEventListener('click', async () => {
         const success = await logout();
         if (success) {
@@ -177,5 +190,6 @@ async function main(params) {
         }
     });
 }
+
 
 main();
