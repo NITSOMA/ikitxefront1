@@ -18,14 +18,30 @@ async function getHeader() {
 
 window.accessToken = null;
 
-async function bootstrapAuth() {
-    await refreshAccessToken();
 
-    // if (window.accessToken) {
-    //     await getProfile();
-    // } else {
-    //    console.log('eror')
-    // }
+let globalRefreshPromise = null;
+
+async function bootstrapAuth() {
+    
+    if (window.accessToken) return;
+
+   
+    if (globalRefreshPromise) {
+        await globalRefreshPromise;
+        return;
+    }
+
+    e
+    globalRefreshPromise = (async () => {
+        try {
+            await refreshAccessToken();
+        } finally {
+            
+            globalRefreshPromise = null;
+        }
+    })();
+
+    await globalRefreshPromise;
 }
 
 
