@@ -1,22 +1,21 @@
-
 let personalName = document.querySelector('.personal-name')
 let personalEmail = document.querySelector('.personal-email')
-let personalAge= document.querySelector('.personal-age')
+let personalAge = document.querySelector('.personal-age')
 let personalImageContainer = document.querySelector('.personal-image')
+
 const API_PROFILE_UPDATE = 'https://nitsoma.pythonanywhere.com/books/profile/update/';
 const API_PROFILE_DELETE = 'https://nitsoma.pythonanywhere.com/books/profile/delete/';
 const BOOK_TO_READ = 'https://nitsoma.pythonanywhere.com/books/profile/books-to-read/'
 const BOOK_READ = 'https://nitsoma.pythonanywhere.com/books/profile/books-read/'
+
 let cameraImg = document.querySelector('.camera-img')
 let inputImage = document.querySelector('.input-image')
 let booksRead = document.querySelector('.books-read')
 let booksToRead = document.querySelector('.books-to-read')
-let seeInfo = document.querySelector('.see-info-button')
 let editInfo = document.querySelector('.edit-info')
-let saveInfo =document.querySelector('.save-info')
+let saveInfo = document.querySelector('.save-info')
 let infoDetailed = document.querySelector('.info-detailed')
 let deleteProfile = document.querySelector('.delete-profile')
-
 let closeImage = document.querySelector('.close-image-img');
 
 let inputAge = document.querySelector('#age')
@@ -27,380 +26,197 @@ let userSpan = document.querySelector('.username-span');
 let emailSpan = document.querySelector('.email-span');
 let ageSpan = document.querySelector('.age-span');
 
-
+// --- HELPER FUNCTIONS ---
 
 async function deleteProfilefunc() {
     try {
         const response = await fetch(API_PROFILE_DELETE, {
             method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${window.accessToken}`,
-            },
-            
+            headers: { 'Authorization': `Bearer ${window.accessToken}` },
         });
-
-        if (!response.ok) {
-            throw new Error('Failed to delete comment');
-        }
-
-       
-      
-
-        window.location.href = 'index.html'
-        return result;
-
+        if (!response.ok) throw new Error('Failed to delete profile');
+        window.location.href = 'index.html';
     } catch (error) {
         console.log('Something went wrong:', error);
-        return null; 
     }
 }
-
-
 
 async function deletebook(url) {
     try {
         const response = await fetch(url, {
             method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${window.accessToken}`,
-            },
-            // credentials: "include"
+            headers: { 'Authorization': `Bearer ${window.accessToken}` },
         });
-
-        if (!response.ok) {
-            throw new Error('Failed to delete comment');
-        }
-
-       
-        let result = null;
-        if (response.status !== 204) {
-            result = await response.json();
-        }
-
-        return result;
-
+        return response.ok; 
     } catch (error) {
-        console.log('Something went wrong:', error);
-        return null; 
+        console.log('Delete error:', error);
+        return false;
     }
 }
-
-
-
-closeImage.addEventListener('click', ()=> {
-    infoDetailed.classList.add('hidden')
-})
 
 function personalshow(data) {
     userSpan.innerHTML = data.username;
     emailSpan.innerHTML = data.email;
-    ageSpan.innerHTML = data.age
-
-
+    ageSpan.innerHTML = data.age;
 }
 
 function redactInfo(data) {
     userSpan.classList.add('hidden');
     emailSpan.classList.add('hidden');
-    ageSpan.classList.add('hidden')
+    ageSpan.classList.add('hidden');
     inputAge.classList.remove('hidden');
-    inputAge.setAttribute('placeholder', data.age)
+    inputAge.setAttribute('placeholder', data.age);
     inputEmail.classList.remove('hidden');
-    inputEmail.setAttribute('placeholder', data.email)
-    inputUsername.classList.remove('hidden')
-    inputUsername.setAttribute('placeholder', data.username)
-    editInfo.classList.add('hidden')
-    saveInfo.classList.remove('hidden')
+    inputEmail.setAttribute('placeholder', data.email);
+    inputUsername.classList.remove('hidden');
+    inputUsername.setAttribute('placeholder', data.username);
+    editInfo.classList.add('hidden');
+    saveInfo.classList.remove('hidden');
+}
 
+function addData(data) {
+    personalImageContainer.innerHTML = ''; // Clear old image
+    let personalImage = document.createElement('img');
+    personalImage.src = data.profile_image_url;
+    personalImage.classList.add('profile-image');
+    personalImageContainer.appendChild(personalImage);
+    
+    personalName.innerHTML = ''; // Clear old name
+    let username = document.createElement('h3');
+    username.innerHTML = data.username;
+    personalName.appendChild(username);
+    personalEmail.innerHTML = data.email;
 }
 
 
 
-
-window.accesToken = null
-
-
-function createCards(books, container){
+function createCards(books, container, isReadList) {
     books.forEach(element => {
-        let card = document.createElement('a');
+        let card = document.createElement('div');
         card.classList.add('card');
-       
-        let bookinfo = document.createElement('div')
-        bookinfo.classList.add('read-book-info')
-        bookinfo.innerHTML = `<p>${element.author}</p>
-        <p>${element.title}</p><p>კითხვის დრო: ${element.reading_hours} საათი</p>`
-        let button = document.createElement('button')
-        button.classList.add('remove-book')
-        button.innerText = 'თაროდან წაშლა'
-        button.setAttribute('data-pk', element.id)
-        bookinfo.appendChild(button) 
         
+        let bookinfo = document.createElement('div');
+        bookinfo.classList.add('read-book-info');
+        bookinfo.innerHTML = `<p>${element.author}</p><p>${element.title}</p><p>კითხვის დრო: ${element.reading_hours} საათი</p>`;
         
+        let button = document.createElement('button');
+        button.classList.add('remove-book');
+        button.innerText = 'თაროდან წაშლა';
+        
+        // Fix: Attach listener to EACH button during creation
+        button.addEventListener('click', async () => {
+            const url = isReadList ? `${BOOK_READ}${element.id}/` : `${BOOK_TO_READ}${element.id}/`;
+            const success = await deletebook(url);
+            if (success) window.location.reload();
+        });
+
+        bookinfo.appendChild(button);
         let cardImage = document.createElement('img');
         cardImage.classList.add('card-image');
         cardImage.src = element.image;
         
         card.appendChild(cardImage);
-        card.appendChild(bookinfo)
+        card.appendChild(bookinfo);
         container.appendChild(card);
-
-   
     });
-
-
 }
-
-document.addEventListener('click', function(e) {
-   
-    const targetButton = e.target.closest('.see-info-button');
-
-
-    if (targetButton) {
-        console.log('Button clicked!'); 
-        
-       
-        if (infoDetailed) {
-             infoDetailed.classList.toggle('hidden');
-        }
-    }
-});
-
-
-function addData(data) {
-     let personalImage = document.createElement('img');
-        personalImage.src =data.profile_image_url;
-        personalImage.classList.add('profile-image')
-        personalImageContainer.appendChild(personalImage)
-        let username = document.createElement('h3');
-        username.innerHTML = data.username
-        personalName.prepend(username)
-        personalEmail.innerHTML = data.email
-        
-
-
-} 
-
 
 async function updateProfileImage(formData) {
     try {
         const response = await fetch(API_PROFILE_UPDATE, {
             method: "PATCH",
-            headers: {
-                "Authorization": `Bearer ${window.accessToken}` 
-             
-            },
-            body: formData, 
+            headers: { "Authorization": `Bearer ${window.accessToken}` },
+            body: formData, // No Content-Type header!
         });
 
-        
         if (response.status === 401) {
-             await bootstrapAuth(); 
-             if (window.accessToken) {
-                 return await updateProfileImage(formData); 
-             }
-             return false;
+            await bootstrapAuth();
+            return await updateProfileImage(formData);
         }
-
-        if (!response.ok) {
-            console.log('Upload failed:', response.status);
-           
-            const errorText = await response.text(); 
-            console.log('Server Error:', errorText);
-            return false;
-        }
-
-        return true;
-
+        return response.ok;
     } catch(error) {
         console.log(error);
         return false;
     }
 }
 
-
 async function updateProfileInfo(data) {
     try {
-
-        const promise = await fetch(API_PROFILE_UPDATE, {
+        const response = await fetch(API_PROFILE_UPDATE, {
             method: "PATCH",
-            headers: {
-               
-                 "Authorization": `Bearer ${window.accessToken}`,
-                
-                
-            },
+            headers: { "Authorization": `Bearer ${window.accessToken}` },
             body: data,
-           
-        })
+        });
 
-        if (promise.status === 401) {
-            await refreshAccessToken();
-            if (window.accessToken) {
-                response = await fetch(API_PROFILE_UPDATE, {
-                    method: "PATCH",
-                    headers: { "Authorization": `Bearer ${window.accessToken}` },
-                    body: data,
-                });
-            } else {
-                return false;
-            }
+        if (response.status === 401) {
+            await bootstrapAuth();
+            return await updateProfileInfo(data);
         }
-
-        if (!promise.ok) {
-            console.log(window.accesToken)
-            console.log('შეცვლა არ შედგა')
-            return false
-        }
-        const response = await promise.json();
-        console.log('new')
-        return true;
-       
-
+        return response.ok;
     } catch(error) {
-        console.log(error)
-        return false
+        console.log(error);
+        return false;
     }
- 
 }
-
-
-
-
 
 async function main() {
-    await bootstrapAuth()
+    await bootstrapAuth();
     const dataUser = await getProfile();
+    
     if (dataUser) {
-        console.log('axali', dataUser.books_read)
-        addData(dataUser)
-       
+        addData(dataUser);
+        personalshow(dataUser);
 
         if (dataUser.books_to_read.length > 0) {
-    console.log(dataUser.books_to_read)
-    createCards(dataUser.books_to_read, booksToRead)
-}
-if (dataUser.books_read.length > 0) {
-     console.log(dataUser.books_read)
-    createCards(dataUser.books_read, booksRead)
-}
+            createCards(dataUser.books_to_read, booksToRead, false);
+        }
+        if (dataUser.books_read.length > 0) {
+            createCards(dataUser.books_read, booksRead, true);
+        }
 
-            cameraImg.addEventListener('click', ()=> {
-     inputImage.click()
-    
+        cameraImg.addEventListener('click', () => inputImage.click());
 
-    
-            })
+        inputImage.addEventListener('change', async () => {
+            const file = inputImage.files[0];
+            if (!file) return;
+            const formData = new FormData();
+            formData.append('profile_image', file);
+            const success = await updateProfileImage(formData);
+            if (success) window.location.reload();
+        });
 
-inputImage.addEventListener('change',   async ()=> {
-    console.log('inside addeventlistener', dataUser)
-    const file = inputImage.files[0];
-    console.log(file)
-    if (!file)  return;
-    const formData = new FormData();
-    
-    formData.append('profile_image', file)
-    const success = await updateProfileImage(formData)
-    if (success) {
-        window.location.reload(); 
-    } else {
-        console.log("update failed")
-    }
-   
-  
-    
-})
-personalshow(dataUser)
+        editInfo.addEventListener('click', (e) => {
+            e.preventDefault();
+            redactInfo(dataUser);
+        });
 
-editInfo.addEventListener('click', (e)=> {
-    e.preventDefault()
-    
-    redactInfo(dataUser)
-})
+        saveInfo.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const formData = new FormData();
+            if (inputAge.value) formData.append('age', inputAge.value);
+            if (inputUsername.value) formData.append('username', inputUsername.value);
+            if (inputEmail.value) formData.append('email', inputEmail.value);
 
+            const success = await updateProfileInfo(formData);
+            if (success) window.location.reload();
+        });
 
-saveInfo.addEventListener('click', async (e) => {
-    e.preventDefault();
-    const formData1 = new FormData();
-
-  
-    const newAge = inputAge.value;
-    const newUsername = inputUsername.value;
-    const newEmail = inputEmail.value;
-
-    if (newAge) formData1.append('age', newAge);
-    if (newUsername) formData1.append('username', newUsername);
-    if (newEmail) formData1.append('email', newEmail);
-
-    const success = await updateProfileInfo(formData1);
-    
-    if (success) {
-      
-        if (newUsername) userSpan.innerHTML = newUsername;
-        if (newEmail) emailSpan.innerHTML = newEmail;
-        if (newAge) ageSpan.innerHTML = newAge;
-
-        userSpan.classList.remove('hidden');
-        emailSpan.classList.remove('hidden');
-        ageSpan.classList.remove('hidden');
-
-        inputAge.classList.add('hidden');
-        inputEmail.classList.add('hidden');
-        inputUsername.classList.add('hidden');
-
-        saveInfo.classList.add('hidden');
-        editInfo.classList.remove('hidden');
+        deleteProfile.addEventListener('click', deleteProfilefunc);
         
-      
-    } else {
-        console.log("update failed");
-    }
-});
+        closeImage.addEventListener('click', () => infoDetailed.classList.add('hidden'));
 
-
-deleteProfile.addEventListener('click', ()=> {
-    deleteProfilefunc()
-})
-
-
-let removeBook = document.querySelector('.remove-book') 
-removeBook.addEventListener('click', ()=> {
-    let id = removeBook.getAttribute('data-pk')
-    let found = dataUser.books_read.find(obj => obj.id ==id);
-    console.log(dataUser.books_read)
-    console.log(found)
-    
-    if (found) {
-        deletebook(`${BOOK_READ}${id}/`)
-        window.location.href = 'profile.html'
-
-    } else {
-        found = dataUser.books_to_read.find(obj => obj.id ==id);
-         if (found) {
-        deletebook(`${BOOK_TO_READ}${id}/`)
-         window.location.href = 'profile.html'
-    }
-    }
-    
-    
-
-})
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.see-info-button')) {
+                infoDetailed.classList.toggle('hidden');
+            }
+        });
 
     } else {
         window.location.href = 'authorization.html';
     }
-
-
-
-
-
-
-
-
-    
 }
 
-
-main()
+main();
 
 
 
