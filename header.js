@@ -138,9 +138,13 @@ async function main(params) {
             profile.appendChild(image);
         }
         userEmail.innerHTML = userData.email;
-        authorization.classList.add('hidden');
-        profileContainer.classList.remove('hidden');
+       profileContainer.classList.add('auth-visible');
+        authorization.classList.remove('auth-visible');
+    } else {
+        authorization.classList.add('auth-visible');
+        profileContainer.classList.remove('auth-visible');
     }
+        
 
     resize(mediaQuery, authorization, nav1, menuIcon, profileContainer);
 
