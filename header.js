@@ -116,9 +116,9 @@ async function main() {
    
     let authorization = document.querySelector('.authorization');
     let profileContainer = document.querySelector('.profile-container');
-    let profile = document.querySelector('.profile'); // Where the image goes
-    let userEmail = document.querySelector('.useremail'); // Where email goes
-    let profileMore = document.querySelector('.profile-more'); // The dropdown menu
+    let profile = document.querySelector('.profile'); 
+    let userName = document.querySelector('.user_name'); 
+    let profileMore = document.querySelector('.profile-more'); 
     
     let nav1 = document.querySelector('.nav1');
     let nav2 = document.querySelector('.nav2');
@@ -150,7 +150,7 @@ async function main() {
         }
 
         
-        userEmail.innerHTML = userData.email;
+        userName.innerHTML = userData.username;
 
       
         authorization.classList.add('hidden');      
