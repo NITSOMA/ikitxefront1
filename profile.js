@@ -181,20 +181,19 @@ function addData(data) {
 } 
 
 
-
 async function updateProfileImage(formData) {
     try {
         const response = await fetch(API_PROFILE_UPDATE, {
             method: "PATCH",
             headers: {
-                "Authorization": `Bearer ${window.accessToken}`,
-                
+                "Authorization": `Bearer ${window.accessToken}` 
+             
             },
             body: formData, 
         });
 
+        
         if (response.status === 401) {
-             
              await bootstrapAuth(); 
              if (window.accessToken) {
                  return await updateProfileImage(formData); 
@@ -204,10 +203,12 @@ async function updateProfileImage(formData) {
 
         if (!response.ok) {
             console.log('Upload failed:', response.status);
+           
+            const errorText = await response.text(); 
+            console.log('Server Error:', errorText);
             return false;
         }
 
-        const data = await response.json();
         return true;
 
     } catch(error) {
