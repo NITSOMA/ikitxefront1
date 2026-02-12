@@ -181,49 +181,39 @@ function addData(data) {
 } 
 
 
-async function updateProfileImage(data) {
-    try {
 
-        const promise = await fetch(API_PROFILE_UPDATE, {
+async function updateProfileImage(formData) {
+    try {
+        const response = await fetch(API_PROFILE_UPDATE, {
             method: "PATCH",
             headers: {
-                 "Authorization": `Bearer ${window.accessToken}`,
+                "Authorization": `Bearer ${window.accessToken}`,
                 
             },
-            body: data,
-            
+            body: formData, 
         });
 
-
-        if (promise.status === 401) {
-            console.log("Token expired, refreshing...");
-            await refreshAccessToken();
-            if (window.accessToken) {
-               
-                response = await fetch(API_PROFILE_UPDATE, {
-                    method: "PATCH",
-                    headers: { "Authorization": `Bearer ${window.accessToken}` },
-                    body: data,
-                });
-            } else {
-                return false; 
-            }
+        if (response.status === 401) {
+             
+             await bootstrapAuth(); 
+             if (window.accessToken) {
+                 return await updateProfileImage(formData); 
+             }
+             return false;
         }
 
-        if (!promise.ok) {
-            console.log(window.accesToken)
-            console.log('შეცვლა არ შედგა')
-            return false
+        if (!response.ok) {
+            console.log('Upload failed:', response.status);
+            return false;
         }
-        const response = await promise.json();
-        return true
-       
+
+        const data = await response.json();
+        return true;
 
     } catch(error) {
-        console.log(error)
-        return false
+        console.log(error);
+        return false;
     }
- 
 }
 
 
