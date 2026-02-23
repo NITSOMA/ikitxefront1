@@ -142,10 +142,6 @@ async function main() {
             
             image.classList.add('profile-image-main'); 
            
-            // image.style.width = "40px";
-            // image.style.height = "40px";
-            // image.style.borderRadius = "50%";
-            // image.style.objectFit = "cover";
             profile.appendChild(image);
         }
 
